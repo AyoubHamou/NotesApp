@@ -20,19 +20,21 @@ if (process.env.NODE_ENV !== "production") {
       origin: "http://localhost:5173",
     })
   );
-};
+}
 
 app.use(express.json());
 
-app.use(rateLimiter);
+app.use("/api", rateLimiter);
 
 app.use("/api/notes", notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
   
-  // Handle all non-API routes
   app.get(/^(?!\/api).*/, (req, res) => {
+    if (req.path.startsWith('/api')) {
+      return res.status(404).json({ error: 'API route not found' });
+    }
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }

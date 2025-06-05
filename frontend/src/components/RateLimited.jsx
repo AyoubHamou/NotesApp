@@ -14,7 +14,7 @@ const RateLimitedUI = () => {
               You've made too many requests in a short period. Please wait a moment.
             </p>
             <p className="text-sm text-base-content/70">
-              Try again in a few seconds.
+              Try again in a few minutes.
             </p>
           </div>
         </div>
