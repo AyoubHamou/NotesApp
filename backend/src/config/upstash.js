@@ -3,7 +3,7 @@ import { Ratelimit } from '@upstash/ratelimit'
 import dotenv from 'dotenv'
 
 dotenv.config();
-//only allow 10 requests per minute
+//only allow 20 requests per minute
 
 const rateLimit = new Ratelimit({
     redis: Redis.fromEnv(),
